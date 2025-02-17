@@ -138,7 +138,7 @@ impl StdError for Error {
     }
 }
 
-#[inline]
+#[inline(always)]
 fn check_alignment<T, U>(data: &T) -> Result<usize, Error>
 where
     U: TypeName,
@@ -156,7 +156,7 @@ where
     Ok(alignment)
 }
 
-#[inline]
+#[inline(always)]
 fn check_length<T, U>(data: &T) -> Result<usize, Error>
 where
     U: TypeName,
@@ -174,7 +174,7 @@ where
     Ok(size_out)
 }
 
-#[inline]
+#[inline(always)]
 fn check_constraints<U>(data: &[u8]) -> Result<usize, Error>
 where
     U: TypeName,
@@ -196,7 +196,7 @@ macro_rules! impl_trait(
         }
 
         unsafe impl FromByteSlice for $to {
-            #[inline]
+            #[inline(always)]
             fn from_byte_slice<T: AsRef<[u8]> + ?Sized>(slice: &T) -> Result<&[$to], Error> {
                 let slice = slice.as_ref();
                 let len = check_constraints::<$to>(slice)?;
