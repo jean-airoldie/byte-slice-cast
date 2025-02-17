@@ -137,6 +137,7 @@ impl StdError for Error {
     }
 }
 
+#[inline]
 fn check_alignment<T, U>(data: &T) -> Result<usize, Error>
 where
     U: TypeName,
@@ -154,6 +155,7 @@ where
     Ok(alignment)
 }
 
+#[inline]
 fn check_length<T, U>(data: &T) -> Result<usize, Error>
 where
     U: TypeName,
@@ -171,6 +173,7 @@ where
     Ok(size_out)
 }
 
+#[inline]
 fn check_constraints<U>(data: &[u8]) -> Result<usize, Error>
 where
     U: TypeName,
